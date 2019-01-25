@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>
+	</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	
+	<script>
+		var Doc = parseInt(prompt("Nhập Do C"));
+		
+		class Temperature {
+			constructor(doC) {
+				this._doC = doC;
+			} 
+
+			convertF () {
+				var dof;
+				dof=(this._doC * 1.8000) + 32.00;
+					alert("Độ C Sâng Độ F La"+dof);
+				//return dof: cái này vẩn dk
+			}
+
+			convertKevin () {
+				var dok;
+				dok=(this._doC  + 273.15);
+					alert("Độ C Sâng Độ k La"+dok);
+
+
+			}
+
+			checkC () {
+				if(this._doC > -273) {
+
+					return(true);
+
+				}
+
+			}
+		}
+
+		var objectTem = new Temperature(Doc);
+		if(objectTem.checkC()) {
+		objectTem.convertF();
+		objectTem.convertKevin();
+		} else {
+			alert("Nhập Sai")
+		}
+
+
+		
+	</script>
+</body>
+</html>

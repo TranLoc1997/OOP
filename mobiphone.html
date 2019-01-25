@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mô tả Điện Thoại</title>
+</head>
+<body>
+	<div>
+		<p id="hienthipin"></p>	
+		<p id="trangthai"></p>
+	</div>
+	<div>
+		<input type="submit" name="" id="nokia" value="OnOffNokia" onclick="Onoff(this.value)"><br/>
+		<input type="submit" name="" id="ThuGuidi" onclick="xemthudi();" value="Hộp Thư Đi" ><br/>
+		<input type="submit" name="" id="ThuGuiden" onclick="xemthuden();" value="Hộp Thư Đến" ><br/>
+	</div>
+
+	<input type="texl" name="" id="texll" placeholder="Nhập Tin Nhắn Vào"><button onclick="guitin(this.value);">Gửi Tin</button><br/>
+	<div>
+		<p id="Xemthu">
+
+
+		</p>
+		<p id="Xemthuden2">
+
+
+		</p>	
+	</div>
+	<span>IPas Xmas</span><br><br/>
+	
+
+	<div>
+		<p id="hienthipin1"></p>	
+		<p id="trangthai1"></p>
+	</div>
+	<input type="submit" name="" id="Iphone" value="OnOffIphone" onclick="OnoffI(this.value)">
+	<div>
+		
+		<input type="submit" name="" id="ThuGuidii" onclick="xemthudii();" value="Hộp Thư Đi" ><br/>
+		<input type="submit" name="" id="ThuGuidenn" onclick="xemthudenn();" value="Hộp Thư Đến" ><br/>
+	</div>
+
+	<input type="texl" name="" id="texlll" placeholder="Nhập Tin Nhắn Vào"><button onclick="guitinn(this.value);">Gửi Tin</button><br/>
+	<div>
+		<p id="Xemthu1">
+			
+		</p>
+		<p id="Xemthuden1">
+
+
+		</p>	
+	</div>
+
+<script type="text/javascript">
+	class mobile {
+			constructor(type,battery,status) {
+				this.type =type ;
+				this.battery=battery;
+				this.status=status;
+				//this.messsend =[];
+
+			} 
+			is_status(){
+				if (this.status) {
+					document.getElementById("trangthai").innerHTML= ("đang bật");
+				}else {
+					document.getElementById("trangthai").innerHTML= ("đang tắt");
+				}
+
+			}
+			is_status1(){
+				if (this.status) {
+					document.getElementById("trangthai1").innerHTML= ("đang bật");
+				}else {
+					document.getElementById("trangthai1").innerHTML= ("đang tắt");
+				}
+
+			}
+			phone_status(){
+				if (this.status) {
+					this.status = false;
+
+				}else{
+					this.status = true;
+				}
+			}
+			sac_battery(){
+				if (this.battery<=50) {
+					while(this.battery<100){
+						this.battery+=1;
+					}
+				}
+				return(this.battery);
+				}
+			trupin(){
+				this.battery-=1;
+				return this.battery;
+
+					
+			}
+			trupin1(){
+				this.battery-=1;
+				return this.battery;
+
+					
+			}		
+			
+				
+	}
+	
+	var MyNokia = new mobile('nokia',50,true);
+	document.getElementById("hienthipin").innerHTML= MyNokia.type +"  " + MyNokia.sac_battery()+"%";	
+	MyNokia.is_status();
+	function Onoff(value){
+		if(value === "OnOffNokia"){
+			MyNokia.phone_status();
+		}
+		MyNokia.is_status();
+	}
+	
+	var hopthudi=[];
+	var hopthuden=[];
+	
+	function guitin() {
+		if(MyNokia.status){
+			var sen = document.getElementById("texll").value;
+			document.getElementById("ThuGuidi").value="Hộp Thư Đi"+"("+hopthudi.push(sen)+")";
+			document.getElementById("ThuGuidenn").value="Hộp Thư Đến"+"("+hopthuden.push(sen)+")";
+			document.getElementById("hienthipin").innerHTML= MyNokia.type +"  " + MyNokia.trupin()+"%";
+			document.getElementById("hienthipin").innerHTML= MyNokia.type +"  " + MyNokia.sac_battery()+"%";
+		} else alert("may cua ban chua hoat dong");
+		//MyNokia.trupin();
+	
+
+	}
+	function xemthudi(){
+		document.getElementById("Xemthu").innerHTML="Hộp Thư Đi : "+hopthudi;
+	}
+	function xemthuden(){
+		document.getElementById("Xemthuden2").innerHTML="Hộp Thư Đến : "+hopthudi1;
+	}
+
+////
+	var MyIphone= new mobile('Iphone',50,true);
+	MyIphone.is_status();
+	function OnoffI(value){
+		if(value === "OnOffIphone"){
+			MyIphone.phone_status();
+		}
+		MyIphone.is_status1();
+	}
+	var hopthudi1=[];
+	var hopthuden1=[];
+	document.getElementById("hienthipin1").innerHTML= MyIphone.type +"  " + MyIphone.sac_battery()+"%";
+ 	
+
+ 	
+	function guitinn() {
+		if (MyIphone.status) {
+			var senn = document.getElementById("texlll").value;	
+			//MyNokia.trupin();
+			document.getElementById("ThuGuidii").value="Hộp Thư Đi"+"("+hopthudi1.push(senn)+")";
+			document.getElementById("ThuGuiden").value="Hộp Thư Đến"+"("+hopthuden1.push(senn)+")";
+			document.getElementById("hienthipin1").innerHTML= MyIphone.type +"  " + MyIphone.trupin1()+"%";
+			document.getElementById("hienthipin1").innerHTML= MyIphone.type +"  " + MyIphone.sac_battery()+"%";
+		}
+		else alert("Máy cua Bạn Chưa Bật");
+	}
+	
+	function xemthudii(){
+		document.getElementById("Xemthu1").innerHTML="Hộp Thư Đi : "+hopthudi1;
+	}
+	function xemthudenn(){
+		document.getElementById("Xemthuden1").innerHTML="Hộp Thư Đến : "+hopthudi;
+	}
+	
+
+
+
+
+
+		
+</script>
+
+</body>
+</html>

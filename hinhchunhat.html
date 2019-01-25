@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<canvas id="myCanvas" width="1368px" height="768px" style="border:1px solid #d3d3d3;">
+         <script type="text/javascript">
+         	var dai = parseInt(prompt("Nhập chieu dai"));
+         	var rong = parseInt(prompt("Nhập chieu rong"));
+         	function Rectangle(dai, rong){
+			   this.dai = dai;
+			   this.rong = rong;   
+			}
+			function createRectangle(){
+			    var Rectangl = document.getElementById("myCanvas");
+				var contex = Rectangl.getContext("2d");
+				contex.fillStyle = "#1EE0BE";
+				contex.fillRect(0,0,dai,rong);		
+				var dientich = dai*rong;
+				var chuvi =(dai+rong)*2;
+				alert("Dien tich la:"+dientich);
+				alert("Chu Vi La"+chuvi);		
+			}
+			createRectangle();
+				
+
+	</script>
+
+</body>
+</html>

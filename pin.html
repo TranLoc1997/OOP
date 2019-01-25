@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+<p id="power" ></p>
+<input type="submit" id="onoff" value="on/off" onclick="onoff()">
+<input type="submit" id="lappin" value="lappin" onclick="lappin()">
+<input type="submit" id="sacpin" value="sacpin" onclick="sacpin()">
+<script>
+class battery {
+   constructor (energy) {
+       this._energy = energy;
+   }
+   getenergy () {
+
+      return this._energy;
+   }
+   decreaseenergy () {
+       this._energy -= 1;
+       return this._energy;
+   }
+   pinmax () {
+       this._energy = 100;
+       return this._energy;
+   }
+}
+class lamp {
+   constructor (status,battery) {
+       this._status = status;
+       this._battery = battery;
+   }
+   lappinstatus(){
+           return this._battery;
+       }
+   batterystatus (){
+       if (this._battery) {
+           alert("da lap pin");
+       } else {
+           alert("chua lap pin");
+       }
+   }
+   setbattery (){
+       if (this._battery) {
+           this._battery = false;
+       } else {
+           this._battery = true;
+       }
+   }
+   statuslamp (){
+       if(this._status) {
+           alert("den bat")
+       } else {
+           alert("den tat")
+       }
+   }
+   changestatus (){
+       if (this._status) {
+           this._status = false;
+       } else  {
+           this._status = true;
+       }
+   }
+}
+var pin = new battery(50  );
+document.getElementById("power").innerHTML = "pin: " + pin.getenergy() + "%";
+var denpin = new lamp(false,false);
+function lappin() {
+   denpin.setbattery();
+   denpin.batterystatus();
+}
+function onoff() {
+   if (denpin.lappinstatus()) {
+       denpin.changestatus();
+       denpin.statuslamp();
+       pin.decreaseenergy();
+       document.getElementById("power").innerHTML = "pin: "+ pin.getenergy() + "%" ;
+   } else {
+       denpin.batterystatus();
+   }
+}
+function sacpin() {
+   pin.pinmax();
+   document.getElementById("power").innerHTML = "pin: "+ pin.getenergy() + "%" ;
+}
+</script>
+</body>
+</html>

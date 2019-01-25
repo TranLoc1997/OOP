@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Thực Hanh Hình Tròn</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var Circle = function(radius) {
+			this.getRadius = function() {
+    			return radius;
+			}
+			this.getArea = function() {
+			    return Math.PI * radius * radius;
+			}
+
+		}
+		var circle = new Circle(3);
+		var radius = circle.getRadius(); // 2
+		var area = circle.getArea(); // 12.566370614359172 
+		alert("radius: " + radius + "; area: " + area);
+
+
+	</script>
+</body>
+</html>
