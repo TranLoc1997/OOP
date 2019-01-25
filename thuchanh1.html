@@ -1,50 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title></title>
+   <meta charset="UTF-8">
+   <title>Title</title>
 </head>
 <body>
+<p id="power" ></p>
 
-<script type="text/javascript">
-	var MyDate = function(day, month, year) {
-          	this.getDay = function() {
-		    return day;
-			}
-			this.getMonth = function() {
-			    return month;
-			}
-			this.getYear = function() {
-			    return year;
-			}
-			this.setDay = function(set_day) {
-		    	return set_day;
-			}
-			this.setMonth = function(set_moth) {
-			    return set_moth;
-			}
-			this.setYear = function(set_year) {
-			    return set_year;
-			}
-	};
-	
-	var date = new MyDate(2, 2, 2007);
-	var day = date.getDay(); // 2
+<input type="submit" id="onoff" value="Bat/Tat Den " onclick="onoff()">
+<input type="submit" id="noiday" value="NoiDay" onclick="noiday()">
+<script>
 
-	var month = date.getMonth(); // 2
+   class lamp {
+       constructor (status,phichcam) {
+           this._status = status;
+           this.phichcam = phichcam;
+       }
+      noidaystatus(){
+           return this.phichcam;
+       }
+       daystatus (){
+           if (this.phichcam) {
+               alert("đã cắm dây");
+           } else {
+               alert("đã rút dây");
+           }
+       }
+       setday (){
+           if (this.phichcam) {
+               this.phichcam= false;
+           } else {
+               this.phichcam = true;
+           }
+       }
+       statuslamp (){
+           if(this._status) {
+               alert("den bat")
+           } else {
+               alert("den tat")
+           }
+       }
+       changedaystatus (){
+           if (this._status) {
+               this._status = false;
+           } else  {
+               this._status = true;
+           }
+       }
+   }
+   var denpin = new lamp(false,false);
+   function noiday() {
+       denpin.setday();
+       denpin.daystatus();
+   }
+   function onoff() {
+       if (denpin.noidaystatus()) {
+           denpin.changedaystatus();
+           denpin.statuslamp();
 
-	var year = date.getYear(); // 2007
+       } else {
+           denpin.daystatus();
+       }
 
-	alert(day + "/" + month + "/" + year);
-
-
-	var set_day = date.setDay(10);
-	var set_moth = date.setMonth(10);
-	var set_year = date.setYear(2019);
-	alert(set_day + "/" +set_moth + "/" + set_year);
-	alert(set_day.toString() + "/" +set_moth.toString() + "/" + set_year.toString());
-
-
-	
+   }
 </script>
 </body>
 </html>

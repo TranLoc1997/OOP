@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>Page Title</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<canvas id="myCanvas" width="1270px" height="630px" style="border:1px solid #d3d3d3; " onclick="gameBoard.mouseClick(event)"></canvas>
+<script>
+   var CHESS_WIDTH = 20;
+   var CHESS_HEIGHT = 20;
+   class Chess {
+       constructor(y,x,mark){
+           this.xPos = x;
+           this.yPos = y;
+           this.mark = mark;
+           this.marked = false;
+       }
+
+       show(ctx) {
+           ctx.font = "20px Georgia";
+           ctx.fillText(this.mark, this.xPos, this.yPos);
+       }
+   }
+   class GameBoard {
+       constructor(height, width) {
+           this.width = width;
+           this.height = height;
+           this.chess = [];
+           this.ctx = document.getElementById('myCanvas').getContext('2d');
+           this.turn = true;
+       }
+       start() {
+           for (var i = 0; i < this.height; i++) {
+               this.chess[i] = [];
+               for (var j = 0; j < this.width; j++) {
+                   var a = i * CHESS_HEIGHT;
+                   var b = j * CHESS_WIDTH;
+                   this.chess[i][j] = new Chess(a, b, "-");
+               }
+           }
+           this.render();
+       }
+       render() {
+           for (var i = 0; i < this.height; i++) {
+               for (var j = 0; j < this.width; j++) {
+                   this.chess[i][j].show(this.ctx);
+               }
+           }
+       }
+       mouseClick(e) {
+           var x = e.pageX;
+           var y = e.pageY;
+           var row = Math.floor(y / CHESS_HEIGHT);
+           var col = Math.floor(x / CHESS_WIDTH);
+           if (!this.chess[row][col].marked) {
+               this.chess[row][col].mark = this.turn ? "X" : "O";
+               this.turn = !this.turn;
+           }
+           this.chess[row][col].marked = true;
+           this.render();
+           this.checkWinner(row, col);
+       }
+
+checkWinner(row, col) {
+
+
+           if (this.checkngang(row, col) || this.checkdoc(row, col) || this.checkcheo1(row, col) || this.checkcheo2(row, col)) {
+               alert("Game Over!")
+           }
+           ;
+       }
+
+       checkngang(row, col) {
+           var count = 0;
+           for (var i = 0; ; i++) {
+               if (this.chess[row - i][col].mark === this.chess[row][col].mark) {
+                   count++;
+               } else {
+                   break;
+               }
+           }
+
+           for (var i = 1; ; i++) {
+               if (this.chess[row + i][col].mark === this.chess[row][col].mark) {
+                   count++;
+               } else {
+                   break;
+               }
+           }
+           return count === 5 ? true : false;
+       }
+
+       checkdoc(row, col) {
+           var count = 0;
+           for (var i = 0; ; i++) {
+               if (this.chess[row][col - i].mark === this.chess[row][col].mark) {
+                   count++;
+               } else {
+                   break;
+               }
+           }
+           for (var i = 1; ; i++) {
+               if (this.chess[row][col + i].mark === this.chess[row][col].mark) {
+                   count++;
+               } else {
+                   break;
+               }
+           }
+           return count === 5 ? true : false;
+       }
+
+       checkcheo1(row, col) {
+           var count = 0;
+           for (var i = 0; ; i++) {
+               if (this.chess[row-i][col - i].mark === this.chess[row][col].mark) {
+                   count++;
+               } else {
+                   break;
+               }
+           }
+           for (var i = 1; ; i++) {
+               if (this.chess[row+i][col + i].mark === this.chess[row][col].mark) {
+                   count++;
+               } else {
+                   break;
+               }
+           }
+           return count === 5 ? true : false;
+       }
+
+       checkcheo2(row, col) {
+           var count = 0;
+           for (var i = 0; ; i++) {
+               if (this.chess[row-i][col + i].mark === this.chess[row][col].mark) {
+                   count++;
+               } else {
+                   break;
+               }
+           }
+           for (var i = 1; ; i++) {
+               if (this.chess[row+i][col - i].mark === this.chess[row][col].mark) {
+                   count++;
+               } else {
+                   break;
+               }
+           }
+           return count === 5 ? true : false;
+       }
+   }
+
+   var gameBoard = new GameBoard(20, 20);
+   gameBoard.start();
+
+</script>
+</body>
+</html>

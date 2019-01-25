@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+  <img src="den1.png" alt="placeholder+image" id="imaig">
+<div>
+    <p id="hienthipin"></p> 
+    <p id="trangthai"></p>
+
+  </div>
+  <div>
+    <input type="submit" name="" id="nguon" value="OnOffNguon" onclick="Onoffngon(this.value)"><br/>
+    <input type="submit" name="" id="bat/tatden" onclick="battat();" value="Bat/tatden" ><br/>
+  </div>
+
+<script type="text/javascript">
+  class bongden {
+      constructor(img,status) {
+        this.image=img;
+        this.status=status;
+        
+
+      } 
+      is_status(){
+        if (this.status) {
+          document.getElementById("trangthai").innerHTML= ("đang bật");
+        }else {
+          document.getElementById("trangthai").innerHTML= ("đang tắt");
+        }
+
+      }
+      
+      den_status(){
+        if (this.status) {
+          this.status = false;
+
+        }else{
+          this.status = true;
+        }
+      }  
+      
+        
+  }
+var bongdeng = new bongden(false);
+bongdeng.is_status();
+ function Onoff(value){
+    if(value === "OnOffNguon"){
+      bongdeng.den_status();
+    }
+    bongdeng.is_status();
+  } 
+  
+ 
+
+
+
+</script>
+</body>
+</html>
